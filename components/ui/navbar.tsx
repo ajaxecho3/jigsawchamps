@@ -1,21 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { UserButton, useUser } from "@clerk/nextjs";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
+  const { isSignedIn, user } = useUser();
   const [state, setState] = useState(false);
   const navRef = useRef<any>();
 
-  // Replace javascript:void(0) path with your path
+  // Replace / path with your path
   const navigation = [
-    { title: "Customers", path: "javascript:void(0)" },
-    { title: "Careers", path: "javascript:void(0)" },
-    { title: "Guides", path: "javascript:void(0)" },
-    { title: "Partners", path: "javascript:void(0)" },
-    { title: "Teams", path: "javascript:void(0)" },
-    { title: "Blog", path: "javascript:void(0)" },
+    { title: "Customers", path: "/" },
+    { title: "Careers", path: "/" },
+    { title: "Guides", path: "/" },
+    { title: "Partners", path: "/" },
+    { title: "Teams", path: "/" },
+    { title: "Blog", path: "/" },
   ];
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const Navbar = (props: Props) => {
     <nav ref={navRef} className="bg-white w-full top-0 z-20">
       <div className="items-center px-4 max-w-screen-3xl mx-auto md:px-8 lg:flex">
         <div className="flex items-center justify-between py-3 lg:py-4 lg:block">
-          <a href="javascript:void(0)">
+          <a href="/">
             <img
               src="https://www.floatui.com/logo.svg"
               width={120}
@@ -90,30 +92,40 @@ const Navbar = (props: Props) => {
         >
           <div>
             <ul className="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
-              <li className="mt-8 mb-8 lg:mt-0 lg:mb-0">
-                <a
-                  href="javascript:void(0)"
-                  className="text-gray-600 hover:text-indigo-600"
-                >
-                  Contact
-                </a>
-              </li>
-              <li className="mt-4 lg:mt-0">
-                <a
-                  href="javascript:void(0)"
-                  className="py-3 px-4 text-center border text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
-                >
-                  Login
-                </a>
-              </li>
-              <li className="mt-8 lg:mt-0">
-                <a
-                  href="javascript:void(0)"
-                  className="py-3 px-4 text-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow block lg:inline"
-                >
-                  Sign Up
-                </a>
-              </li>
+              {!isSignedIn ? (
+                <Fragment>
+                  <li className="mt-4 lg:mt-0">
+                    <a
+                      href="/sign-in"
+                      className="py-3 px-4 text-center border text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
+                    >
+                      Login
+                    </a>
+                  </li>
+                  <li className="mt-8 lg:mt-0">
+                    <a
+                      href="/sign-up"
+                      className="py-3 px-4 text-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow block lg:inline"
+                    >
+                      Sign Up
+                    </a>
+                  </li>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <li className="mt-4 lg:mt-0">
+                    <a
+                      href={`${user.id}/puzzles`}
+                      className="py-3 px-4 text-center border text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
+                    >
+                      Your Puzzle
+                    </a>
+                  </li>
+                  <li className="mt-4 lg:mt-0">
+                    <UserButton afterSignOutUrl="/" />
+                  </li>
+                </Fragment>
+              )}
             </ul>
           </div>
           <div className="flex-1">
