@@ -40,13 +40,8 @@ const Navbar = (props: Props) => {
     <nav ref={navRef} className="bg-white w-full top-0 z-20">
       <div className="items-center px-4 max-w-screen-3xl mx-auto md:px-8 lg:flex">
         <div className="flex items-center justify-between py-3 lg:py-4 lg:block">
-          <a href="/">
-            <img
-              src="https://www.floatui.com/logo.svg"
-              width={120}
-              height={50}
-              alt="Float UI logo"
-            />
+          <a href="/" className=" text-[#3f88c5] font-bold text-lg">
+            Puzzle Champs
           </a>
           <div className="lg:hidden">
             <button
