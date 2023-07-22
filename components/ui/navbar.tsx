@@ -2,6 +2,7 @@
 "use client";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { Fragment, useEffect, useRef, useState } from "react";
+import { Button } from "./button";
 
 type Props = {};
 
@@ -113,7 +114,7 @@ const Navbar = (props: Props) => {
                       href={`${user.id}/puzzles`}
                       className="py-3 px-4 text-center border text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
                     >
-                      Your Puzzle
+                      <Button>Your Puzzle</Button>
                     </a>
                   </li>
                   <li className="mt-4 lg:mt-0">
