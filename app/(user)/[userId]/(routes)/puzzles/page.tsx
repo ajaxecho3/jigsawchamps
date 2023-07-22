@@ -7,7 +7,11 @@ type PuzzlesPageProps = {
 };
 
 const PuzzlesPage = ({}: PuzzlesPageProps) => {
-  return <div>PuzzlesPage</div>;
+  return (
+    <div>
+      <h1>Hello</h1>
+    </div>
+  );
 };
 
 export default PuzzlesPage;
