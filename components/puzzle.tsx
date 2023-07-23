@@ -23,7 +23,7 @@ export default function Jigsaw(props: {
         height: props.height,
         pieceSize: props.pieceSize,
         preventOffstageDrag: true,
-        fixed: true,
+        // fixed: true,
         proximity: 20,
         borderFill: 10,
         strokeWidth: 1.5,
@@ -43,5 +43,5 @@ export default function Jigsaw(props: {
     };
   }, [props.height, props.imageUrl, props.pieceSize, props.width]);
 
-  return <div ref={puzzleRef} id={props.id}></div>;
+  return <div className=" bg-gray-200" ref={puzzleRef} id={props.id}></div>;
 }
