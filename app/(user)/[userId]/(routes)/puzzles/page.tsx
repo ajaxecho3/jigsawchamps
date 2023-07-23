@@ -6,6 +6,8 @@ import { Separator } from "@/components/ui/separator";
 import prismadb from "@/lib/prismadb";
 import Image from "next/image";
 import PuzzleCard from "@/components/ui/puzzle-card";
+import Jigsaw from "@/components/puzzle";
+import PuzzleContainter from "./components/puzzleContainter";
 
 type PuzzlesPageProps = {
   params: {
@@ -36,6 +38,10 @@ const PuzzlesPage = async ({ params }: PuzzlesPageProps) => {
           <PuzzleCard key={puzzle.id} puzzle={puzzle} />
         ))}
       </div>
+      <PuzzleContainter
+        id={puzzles[0].id + "puzzle"}
+        imageUrl={puzzles[0].imageUrl}
+      />
     </div>
   );
 };

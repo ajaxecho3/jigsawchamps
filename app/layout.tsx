@@ -22,7 +22,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <Navbar />
-          <main className="px-4 py-5 max-w-screen-3xl mx-auto md:px-8 min-h-screen">
+          <main className="px-4 py-5 max-w-screen-xl mx-auto md:px-8 min-h-screen">
             {children}
           </main>
           <Footer />
