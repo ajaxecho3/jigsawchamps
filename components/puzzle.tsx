@@ -36,10 +36,28 @@ export default function Jigsaw(props: {
 
       background.adjustImagesToPuzzleHeight();
       background.autogenerate({
-        horizontalPiecesCount: 6,
-        verticalPiecesCount: 5,
+        horizontalPiecesCount: 3,
+        verticalPiecesCount: 3,
       });
+      background.shuffle(0.8);
       background.draw();
+      background.attachSolvedValidator();
+
+      ["resize", "DOMContentLoaded"].forEach((event) => {
+        window.addEventListener(event, () => {
+          // @ts-ignore
+          var container = document.getElementById(puzzle.id);
+          // @ts-ignore
+          background.resize(container.offsetWidth, container.scrollHeight);
+          // @ts-ignore
+          background.scale(container.offsetWidth / props.width);
+          background.redraw();
+        });
+      });
+
+      background.onValid(() => {
+        alert("COMPLETE");
+      });
     };
   }, [props.height, props.imageUrl, props.pieceSize, props.width]);
 
